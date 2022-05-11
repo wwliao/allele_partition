@@ -11,7 +11,7 @@ args = parser.parse_args()
 invcf = VCF(args.vcffile)
 invcf.add_info_to_header({"ID": "CLUSTER_AC", "Number": ".", "Type": "Integer", "Description": "Total number of alleles in called genotypes after clustering"})
 invcf.add_info_to_header({"ID": "CLUSTER_AF", "Number": ".", "Type": "Float", "Description": "Estimated allele frequency in the range (0,1] after clustering"})
-invcf.add_info_to_header({"ID": "CLUSTER_AI", "Number": ".", "Type": "String", "Description": "Representative allele index after clustering"})
+invcf.add_info_to_header({"ID": "CLUSTER_AI", "Number": ".", "Type": "String", "Description": "alleles in each cluster"})
 prefix = re.search("(\S+)\.vcf\.gz", basename(args.vcffile))[1]
 outvcf = Writer(f"{prefix}.partitioned.vcf.gz", invcf)
 for record in invcf:

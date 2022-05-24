@@ -46,7 +46,10 @@ for record in invcf:
         alleles.append("-".join([str(t[1]) for t in cluster]))
         count = sum(t[0] for t in cluster)
         counts.append(count)
-        freqs.append(f"{count/an:.6f}")
+        if an > 0:
+            freqs.append(f"{count/an:.6f}")
+        else:
+            freqs.append(f"0.000000")
 
     record.INFO["CLUSTER_AI"] = ",".join(alleles)
     record.INFO["CLUSTER_AC"] = ",".join(map(str, counts))
